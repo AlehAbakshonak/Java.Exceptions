@@ -6,6 +6,7 @@ import com.epam.abak.javaExceptions.universityTree.Faculty;
 import com.epam.abak.javaExceptions.universityTree.Group;
 import com.epam.abak.javaExceptions.universityTree.Student;
 import com.epam.abak.javaExceptions.universityTree.University;
+import com.epam.abak.javaExceptions.userExceptions.*;
 
 public class Runner {
    public static void main(String[] args)
@@ -49,35 +50,44 @@ public class Runner {
                   )
             }
       };
-      Student currentStudent =  students[0][0][0];
-      System.out.printf("Average mark of student %s (Group %s of faculty %s): %.0f\n",
-            currentStudent.getStudentName(),
-            currentStudent.getGroupName(),
-            currentStudent.getFacultyName(),
-            currentStudent.countAverageMark()
-      );
+      try {
+         Student currentStudent = students[0][0][0];
+         System.out.printf("Average mark of student %s (Group %s of faculty %s): %.0f\n",
+               currentStudent.getStudentName(),
+               currentStudent.getGroupName(),
+               currentStudent.getFacultyName(),
+               currentStudent.countAverageMark()
+         );
 
-      EducationDiscipline currentEducationDiscipline = EducationDisciplines.getDisciplineById(0);
-      Group currentGroup = groups[0][1];
-      System.out.printf("Average mark in discipline %s in group %s: %.0f\n",
-            currentEducationDiscipline.getName(),
-            currentGroup.getGroupName(),
-            currentGroup.countAverageMarkInDisciplineById(0)
-      );
+         EducationDiscipline currentEducationDiscipline = EducationDisciplines.getDisciplineById(0);
+         Group currentGroup = groups[0][1];
+         System.out.printf("Average mark in discipline %s in group %s: %.0f\n",
+               currentEducationDiscipline.getName(),
+               currentGroup.getGroupName(),
+               currentGroup.countAverageMarkInDisciplineById(0)
+         );
 
-      currentEducationDiscipline = EducationDisciplines.getDisciplineById(1);
-      Faculty currentFaculty = faculties[1];
-      System.out.printf("Average mark in discipline %s in faculty %s: %.0f\n",
-            currentEducationDiscipline.getName(),
-            currentGroup.getFacultyName(),
-            currentFaculty.countAverageMarkInDisciplineById(1)
-      );
+         currentEducationDiscipline = EducationDisciplines.getDisciplineById(1);
+         Faculty currentFaculty = faculties[1];
+         System.out.printf("Average mark in discipline %s in faculty %s: %.0f\n",
+               currentEducationDiscipline.getName(),
+               currentGroup.getFacultyName(),
+               currentFaculty.countAverageMarkInDisciplineById(1)
+         );
 
-      currentEducationDiscipline = EducationDisciplines.getDisciplineById(2);
-      System.out.printf("Average mark in discipline %s in university %s: %.0f\n",
-            currentEducationDiscipline.getName(),
-            hogwarts.getUniversityName(),
-            hogwarts.countAverageMarkInDisciplineById(2)
-      );
+         currentEducationDiscipline = EducationDisciplines.getDisciplineById(2);
+         System.out.printf("Average mark in discipline %s in university %s: %.0f\n",
+               currentEducationDiscipline.getName(),
+               hogwarts.getUniversityName(),
+               hogwarts.countAverageMarkInDisciplineById(2)
+         );
+      }
+      catch (EmptyEducationalUnitException |
+            WrongDisciplineIndexException |
+            WrongMarksAmountException |
+            IllegalMarkValueException |
+            EmptyNameException ex) {
+         System.out.println(ex.getMessage());
+      }
    }
 }
