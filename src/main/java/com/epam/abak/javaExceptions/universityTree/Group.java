@@ -7,13 +7,11 @@ import java.util.ArrayList;
 
 public class Group extends Faculty {
    private String groupName;
-   private int studentAmount;
    private ArrayList<Student> studentList = new ArrayList<>();
 
    public Group(String universityName, String facultyName, String groupName) {
       super(universityName, facultyName);
       this.groupName = groupName;
-      this.studentAmount = 0;
    }
 
    public float countAverageMark() throws EmptyEducationalUnitException {
@@ -58,10 +56,6 @@ public class Group extends Faculty {
       return studentList;
    }
 
-   public int getStudentAmount() {
-      return studentAmount;
-   }
-
    public Student[] addNewStudents(String[] studentNames, int[][][] disciplinesMarks)
          throws EmptyNameException, WrongMarksAmountException, IllegalMarkValueException, WrongDisciplineIndexException {
       Student[] newStudents = new Student[studentNames.length];
@@ -103,7 +97,6 @@ public class Group extends Faculty {
       }
       Student newStudent = new Student(this.universityName, this.facultyName, this.groupName, studentName, disciplinesMarks);
       this.studentList.add(newStudent);
-      this.studentAmount++;
       return newStudent;
    }
 }

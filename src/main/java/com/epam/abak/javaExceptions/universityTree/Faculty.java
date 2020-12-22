@@ -7,13 +7,11 @@ import java.util.ArrayList;
 
 public class Faculty extends University {
    protected String facultyName;
-   protected int groupAmount;
    protected ArrayList<Group> groupList = new ArrayList<>();
 
    public Faculty(String universityName, String facultyName) {
       super(universityName);
       this.facultyName = facultyName;
-      this.groupAmount = 0;
    }
 
    public float countAverageMark() throws EmptyEducationalUnitException {
@@ -51,10 +49,6 @@ public class Faculty extends University {
       return facultyName;
    }
 
-   public int getGroupAmount() {
-      return groupAmount;
-   }
-
    public ArrayList<Group> getGroupList() {
       return groupList;
    }
@@ -71,7 +65,6 @@ public class Faculty extends University {
       if (!groupName.equals("")) {
          Group newGroup = new Group(this.universityName, this.facultyName, groupName);
          this.groupList.add(newGroup);
-         this.groupAmount++;
          return newGroup;
       } else {
          throw new EmptyNameException("Group name cannot be empty");

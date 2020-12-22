@@ -7,12 +7,10 @@ import java.util.ArrayList;
 
 public class University {
    protected String universityName;
-   protected int facultyAmount;
    protected ArrayList<Faculty> facultyList = new ArrayList<>();
 
    public University(String universityName) {
       this.universityName = universityName;
-      this.facultyAmount = 0;
    }
 
    public float countAverageMark() throws EmptyEducationalUnitException {
@@ -58,10 +56,6 @@ public class University {
       return universityName;
    }
 
-   public int getFacultyAmount() {
-      return facultyAmount;
-   }
-
    public ArrayList<Faculty> getFacultyList() {
       return facultyList;
    }
@@ -78,7 +72,6 @@ public class University {
       if (!facultyName.equals("")) {
          Faculty newFaculty = new Faculty(this.universityName, facultyName);
          this.facultyList.add(newFaculty);
-         this.facultyAmount++;
          return newFaculty;
       } else {
          throw new EmptyNameException("Faculty name cannot be empty");
